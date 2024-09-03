@@ -105,8 +105,6 @@ The `Utils` folder contains scripts that implement entropy estimators and the pr
 - `Compute_PIMAX.py`: Computes the predictability upper bound based on entropy estimates.
 
 These scripts are utilized by the other experiment scripts as needed. You can also run these scripts independently to compute entropy estimates and predictability bounds for your own data.
-
-## Results
 ## Results
 
 The results for all experiments and figures are saved in the `Results` directory.
