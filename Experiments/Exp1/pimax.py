@@ -1,6 +1,6 @@
 import pandas as pd
 import sys
-sys.path.append('../') 
+sys.path.append('../..') 
 
 from Utils.LZ2 import * 
 
