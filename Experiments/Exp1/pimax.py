@@ -19,13 +19,14 @@ def get_data(path, length):
 if __name__ == "__main__":
 
     N_values = [5,10,15,20,25,30,35,40,45,50]
-    n = 10000
+    length = 10000
+    n=50000
     a_values = [1,15]
     for a in a_values:
         PM = []
         for N in N_values:
-            input_path = "Data/markov_ts_"+str(N)+"_"+str(n)+"_"+str(a)+".csv"
-            series = get_data(input_path, n)
+            input_path = "../../Datasets/Markov/Exp1/markov_ts_"+str(N)+"_"+str(n)+"_"+str(a)+".csv"
+            series = get_data(input_path, length)
             H = Compute_LZ2(series[:int(0.8*len(series))],0.0)
             pimax = get_pimax(H,N)
             print(pimax)
