@@ -9,7 +9,7 @@ This repository contains the Python code used to perform the experiments describ
 
 - [Overview](#overview)
 - [Requirements](#requirements)
-- [Figure 1](#figure-1)
+- [Figure 2](#figure-1)
 - [Experiment 1](#experiment-1)
 - [Experiment 2](#experiment-2)
 - [Experiment 3](#experiment-3)
@@ -20,7 +20,7 @@ This repository contains the Python code used to perform the experiments describ
 
 The code is organized as follows:
 
-- `challenges/`: Contains code to generate Figure 1.
+- `challenges/`: Contains code to generate Figure 2.
 - `Experiments/`: Contains subdirectories for each experiment:
   - `Exp1/`: Scripts for Experiment 1.
   - `Exp2/`: Scripts for Experiment 2.
@@ -28,7 +28,16 @@ The code is organized as follows:
 
 ## Requirements
 
-1. Install the required Python packages:
+1. Clone the repository:
+    ```bash
+    # Clone the repository to your local machine
+    git clone https://github.com/JamalSZ/QEPUBUNTS.git
+
+    # Change directory to the cloned repository
+    cd QEPUBUNTS
+    ```
+
+2. Install the required Python packages:
     ```bash
     pip install -r requirements.txt
     ```
@@ -43,8 +52,15 @@ To generate Figure 2, follow these steps:
     ```
 
 2. Run the script:
+	```bash
+	   # N=number of states and n length 
+	   # python fig2.py first N n
+	   python fig2.py 1 50 10000
+    ```
+
     ```bash
-    python fig2.py
+   	# After first run
+    python fig2.py 0
     ```
 
 The output will be saved in the `Challenges/Results/` folder.
