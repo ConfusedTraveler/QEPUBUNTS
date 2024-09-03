@@ -33,9 +33,9 @@ The code is organized as follows:
     pip install -r requirements.txt
     ```
 
-## Figure 1
+## Figure 2
 
-To generate Figure 1, follow these steps:
+To generate Figure 2, follow these steps:
 
 1. Navigate to the `Challenges` directory:
     ```bash
@@ -44,7 +44,7 @@ To generate Figure 1, follow these steps:
 
 2. Run the script:
     ```bash
-    python fig1.py
+    python fig2.py
     ```
 
 The output will be saved in the `Challenges/Results/` folder.
