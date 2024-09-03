@@ -1,13 +1,17 @@
 import numpy as np
 import pandas as pd
 import sys
+sys.path.append('../../') 
+
+from Utils.LZ2 import * 
+from Utils.LZ1 import *
+from Utils.compute_PIMax import *
 from scipy.optimize import fsolve
-import matplotlib.pyplot as plt
-#import lstm_predict
-#import arima_predict
-#import cnn_predict
-from LZ1 import *
-from LZ2 import *
+
+import lstm_predict
+import arima_predict
+import cnn_predict
+
 
 def get_data(path, length):
     df = pd.read_csv(path)
@@ -18,8 +22,6 @@ def get_data(path, length):
 
 
 def get_pimax(S, N):
-    #func = lambda x: (-(x * np.log2(x) + (1 - x) * np.log2(1 - x)) + (1 - x) * (np.log2(N - 1) - np.log2(1 - x))) - S
-    #func = lambda x: -2*x * np.log2(x) - 2*(1 - x) * np.log2(1 - x) + (x) * (np.log2(N - 2)) - S
     func = lambda x: -x * np.log2(x) - (1 - x) * np.log2(1 - x) + (1 - x) * (np.log2(N - 2)) - S
     result = fsolve(func, 0.99999)
     return result[0]
@@ -30,7 +32,7 @@ if __name__ == "__main__":
 	np.random.seed(0)
 	model = sys.argv[1]
 	#n = int(sys.argv[2])
-	input_path = "Datasets/Stock_Open.csv"
+	input_path = "../../Datasets/Stock_Open.csv"
 	df = pd.read_csv(input_path,header=None, names=["Open"])
 	series = df["Open"].values
 	n = len(series)
@@ -50,7 +52,7 @@ if __name__ == "__main__":
 		epsilon = [0.1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60]
 		pimax = []
 		Hest = []
-		if estimator == "Hcn":
+		if estimator == "NLZ1":
 			for e in epsilon:
 				N = (max(series)-min(series)+2*e)/e	
 				H = Compute_LZ1(series,e)
@@ -62,7 +64,7 @@ if __name__ == "__main__":
 				H = Compute_LZ2(series,e)
 				pimax.append(get_pimax(H,N))
 				Hest.append(H)
-		if estimator == "Hcn":
+		if estimator == "NLZ1":
 			with open(output_path,"a") as f:
 				for j in range(len(epsilon)):
 					f.write( str(n)+","+str(epsilon[j])+","+str(pimax[j])+","+str(Hest[j])+"\n")
