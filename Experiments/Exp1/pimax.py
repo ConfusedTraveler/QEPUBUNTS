@@ -25,13 +25,15 @@ if __name__ == "__main__":
     for a in a_values:
         PM = []
         for N in N_values:
-        	print("N=","a=",a)
+        	
             input_path = "../../Datasets/Markov/Exp1/markov_ts_"+str(N)+"_"+str(n)+"_"+str(a)+".csv"
             series = get_data(input_path, length)
+            
             H = Compute_LZ2(series[:int(0.8*len(series))],0.0)
             pimax = get_pimax(H,N)
             print(pimax)
             PM.append(pimax)
+            print("Done! N=","a=",a)
         
         output_path = "Results/PIMAX/pimax_"+str(N)+"_"+str(n)+"_"+str(a)+".csv"
 
