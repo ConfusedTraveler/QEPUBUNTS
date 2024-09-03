@@ -26,12 +26,28 @@ The code is organized as follows:
   - `Exp2/`: Scripts for Experiment 2.
   - `Exp3/`: Scripts for Experiment 3 (To be detailed later).
 
-## Installation
+## Requirements
 
 1. Install the required Python packages:
     ```bash
     pip install -r requirements.txt
     ```
+
+## Figure 1
+
+To generate Figure 1, follow these steps:
+
+1. Navigate to the `Challenges` directory:
+    ```bash
+    cd challenges
+    ```
+
+2. Run the script:
+    ```bash
+    python fig1.py
+    ```
+
+The output will be saved in the `Challenges/Results/` folder.
 
 ## Experiment 1
 
@@ -78,21 +94,6 @@ To reproduce the results for Experiment 2, follow these steps:
 
 All outputs will be saved in the `Exp2/Results/` directory.
 
-## Figure 1
-
-To generate Figure 1, follow these steps:
-
-1. Navigate to the `Challenges` directory:
-    ```bash
-    cd challenges
-    ```
-
-2. Run the script:
-    ```bash
-    python fig1.py
-    ```
-
-The output will be saved in the `Challenges/Results/` folder.
 
 ## Utils: Entropy Estimators
 
