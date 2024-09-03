@@ -2,7 +2,7 @@ import pandas as pd
 import sys
 sys.path.append('../') 
 
-from LZ2 import * 
+from Utils.LZ2 import * 
 
 import numpy as np
 from scipy.optimize import fsolve
