@@ -114,6 +114,93 @@ To reproduce the results for Experiment 2, follow these steps:
 
 All outputs will be saved in the `Exp2/Results/` directory.
 
+## Experiment 3
+
+To reproduce the results for Experiment 3, follow these steps:
+
+1. Navigate to the `Exp3` directory:
+    ```bash
+    cd Experiments/Exp3
+    ```
+
+2. For each dataset (Temperature, ETTh1, and Stock), run the following commands:
+
+    - For the Temperature dataset:
+      ```bash
+      # Run Pimax model with NLZ1 entropy estimator
+      python temp.py Pimax NLZ1
+
+      # Run Pimax model with NLZ2 entropy estimator
+      python temp.py Pimax NLZ2
+
+      # Run ARIMA model
+      python temp.py arima
+
+      # Run LSTM model
+      python temp.py lstm
+
+      # Run CNN-LSTM model
+      python temp.py cnnlstm
+      
+    - For the ETTh1 dataset:
+      ```bash
+      # Run Pimax model with NLZ1 entropy estimator
+      python etth1.py Pimax NLZ1
+
+      # Run Pimax model with NLZ2 entropy estimator
+      python etth1.py Pimax NLZ2
+
+      # Run ARIMA model
+      python etth1.py arima
+
+      # Run LSTM model
+      python etth1.py lstm
+
+      # Run CNN-LSTM model
+      python etth1.py cnnlstm
+      ```
+
+    - For the Stock dataset:
+      ```bash
+      # Run Pimax model with NLZ1 entropy estimator
+      python stock.py Pimax NLZ1
+
+      # Run Pimax model with NLZ2 entropy estimator
+      
+      python stock.py Pimax NLZ2
+
+      # Run ARIMA model
+      python stock.py arima
+
+      # Run LSTM model
+      python stock.py lstm
+
+      # Run CNN-LSTM model
+      python stock.py cnnlstm
+      ```
+
+3. After running the models, navigate to the respective results folders and generate the plots:
+
+    - For the Temperature dataset:
+      ```bash
+      cd Temp_Results
+      python plot_temp.py
+      ```
+
+    - For the ETTh1 dataset:
+      ```bash
+      cd ETTh1_Results
+      python plot_temp.py
+      ```
+
+    - For the Stock dataset:
+      ```bash
+      cd Stock_Results
+      python plot_temp.py
+      ```
+
+All outputs will be saved in their respective results folders (`Temp_Results`, `ETTh1_Results`, `Stock_Results`).
+
 
 ## Utils: Entropy Estimators
 
