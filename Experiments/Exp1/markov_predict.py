@@ -80,7 +80,7 @@ if __name__ == "__main__":
     grandparent_directory = os.path.dirname(parent_directory)
     for a in a_values:
          for N in N_values:
-            input_path = grandparent_directory + "/Datasets/Markov/Seed11/markov_ts_"+str(N)+"_"+str(50000)+"_"+str(a)+"z.csv"
+            input_path = grandparent_directory + "/Datasets/Markov/Exp1/markov_ts_"+str(N)+"_"+str(50000)+"_"+str(a)+".csv"
             output_path = "Results/markov_pred_"+str(N)+"_"+str(n)+"_"+str(a)+".csv"
             series = get_data(input_path, n)
             predict(series,N,output_path)
