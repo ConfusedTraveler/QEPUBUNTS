@@ -9,6 +9,7 @@ This repository contains the Python code used to perform the experiments describ
 
 - [Overview](#overview)
 - [Requirements](#requirements)
+- [Datasets](#datasets)
 - [Figure 2](#figure-1)
 - [Experiment 1](#experiment-1)
 - [Experiment 2](#experiment-2)
@@ -55,15 +56,15 @@ The real-world datasets used in the experiments are:
 
 - **Stock Dataset**: The stock market data was processed to focus on the 'Open' prices, stored in `Stock_Open.csv`.
 
-These datasets are stored in the `datasets/` directory and are used directly by the scripts in Experiment 3.
+These datasets are stored in the `Datasets/` directory and are used directly by the scripts in Experiment 3.
 
 ### Synthetic Markov Data
 
-The synthetic Markov data used in some of the experiments is generated using the script `generate_markov_synthetic.py`, which is located in the `datasets/Markov` folder. The generated data are organized as follows:
+The synthetic Markov data used in some of the experiments is generated using the script `generate_markov_synthetic.py`, which is located in the `Datasets/Markov` folder. The generated data are organized as follows:
 
-- **Experiment 1 Data**: Generated Markov data for Experiment 1 are stored in the `Experiments/Exp1` folder.
+- **Experiment 1 Data**: Generated Markov data for Experiment 1 are stored in the `Datasets/Markov/Exp1` folder.
   
-- **Experiment 2 Data**: Generated Markov data for Experiment 2 are stored in the `Experiments/Exp2` folder.
+- **Experiment 2 Data**: Generated Markov data for Experiment 2 are stored in the `Datasets/Markov/Exp2` folder.
 
 ## Figure 2
 
