@@ -32,9 +32,11 @@ if __name__ == "__main__":
 	np.random.seed(0)
 	model = sys.argv[1]
 	#n = int(sys.argv[2])
-	input_path = "Datasets/Temperature/zurich_temperature.csv"
+	input_path = "../../Datasets/temperature.csv"
 	df = pd.read_csv(input_path)
-	series = df["temperature"].values
+	print(df.head())
+	print(df.shape)
+	series = df["HT"].values
 	n = 16000 #len(series)
 	series = series[:n]
 	if model == "arima":
@@ -61,7 +63,7 @@ if __name__ == "__main__":
 		else:
 			for e in epsilon:
 				N = (max(series)-min(series)+2*e)/e
-				H = compute_LZ2(series,e)
+				H = Compute_LZ2(series,e)
 				pimax.append(get_pimax(H,N))
 				Hest.append(H)
 		if estimator == "NLZ1":

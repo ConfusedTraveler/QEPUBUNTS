@@ -32,7 +32,7 @@ if __name__ == "__main__":
 	np.random.seed(0)
 	model = sys.argv[1]
 	#n = int(sys.argv[2])
-	input_path = "Datasets/ETT-data/ETTh1.csv"
+	input_path = "../../Datasets/ETTh1.csv"
 	df = pd.read_csv(input_path)
 	series = df["OT"].values
 	n = len(series)
@@ -60,7 +60,7 @@ if __name__ == "__main__":
 		else:
 			for e in epsilon:
 				N = (max(series)-min(series)+2*e)/e
-				H = compute_LZ2(series,e)
+				H = Compute_LZ2(series,e)
 				pimax.append(get_pimax(H,N))
 				Hest.append(H)
 		if estimator == "NLZ1":
