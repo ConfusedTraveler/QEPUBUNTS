@@ -46,6 +46,29 @@ The code is organized as follows:
     pip install -r requirements.txt
     ```
 
+
+## Datasets
+
+### Real-World Datasets
+
+The real-world datasets used in the experiments are:
+
+- **Temperature Dataset**: Downloaded from the link indicated in the paper, this dataset was processed to extract the univariate variable used in the experiments and stored in `temperature.csv`.
+  
+- **ETTh1 Dataset**: Similar to the temperature dataset, ETTh1 data was downloaded and the univariate variable used in the experiments was extracted and stored in `etth1.csv`.
+
+- **Stock Dataset**: The stock market data was processed to focus on the 'Open' prices, stored in `Stock_Open.csv`.
+
+These datasets are stored in the `datasets/` directory and are used directly by the scripts in Experiment 3.
+
+### Synthetic Markov Data
+
+The synthetic Markov data used in some of the experiments is generated using the script `generate_markov_synthetic.py`, which is located in the `datasets/Markov` folder. The generated data are organized as follows:
+
+- **Experiment 1 Data**: Generated Markov data for Experiment 1 are stored in the `Experiments/Exp1` folder.
+  
+- **Experiment 2 Data**: Generated Markov data for Experiment 2 are stored in the `Experiments/Exp2` folder.
+
 ## Figure 2
 
 To generate Figure 2, follow these steps:
