@@ -1,13 +1,8 @@
 import csv
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 import numpy as np
 import pandas as pd
 import sys
 import matplotlib.pyplot as plt
-
-
-from scipy.optimize import minimize_scalar,fsolve
 import warnings
 import sys
 sys.path.append('../')  # Add parent directory to the system path
