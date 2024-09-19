@@ -53,8 +53,8 @@ def LZ2lookup(D, s, j, e):
     keys = list(D.keys())
 
     # Use binary search to find the left and right bounds of keys within the tolerance range
-    left_bound = bisect_left(keys, s - e)
-    right_bound = bisect_right(keys, s + e)
+    left_bound = bisect_left(keys, s - 2*e)
+    right_bound = bisect_right(keys, s + 2*e)
 
     # Iterate over the relevant keys within the tolerance range
     for key in keys[left_bound:right_bound]:
