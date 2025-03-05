@@ -1,4 +1,5 @@
 # QEPUBUNTS
+
 Implementation of our SIGKDD 2024 Paper "Quantifying and Estimating the Predictability Upper Bound of Univariate Numeric Time Series"
 
 # Research Paper Experiments
@@ -7,15 +8,20 @@ This repository contains the Python code used to perform the experiments describ
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Requirements](#requirements)
-- [Datasets](#datasets)
-- [Figure 2](#figure-1)
-- [Experiment 1](#experiment-1)
-- [Experiment 2](#experiment-2)
-- [Experiment 3](#experiment-3)
-- [Utils](#utils)
-- [Results](#results)
+- [QEPUBUNTS](#qepubunts)
+- [Research Paper Experiments](#research-paper-experiments)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Requirements](#requirements)
+  - [Datasets](#datasets)
+    - [Real-World Datasets](#real-world-datasets)
+    - [Synthetic Markov Data](#synthetic-markov-data)
+  - [Figure 2](#figure-2)
+  - [Experiment 1](#experiment-1)
+  - [Experiment 2](#experiment-2)
+  - [Experiment 3](#experiment-3)
+  - [Utils: Entropy Estimators](#utils-entropy-estimators)
+  - [Results](#results)
 
 ## Overview
 
@@ -30,6 +36,7 @@ The code is organized as follows:
 ## Requirements
 
 1. Clone the repository:
+
     ```bash
     # Clone the repository to your local machine
     git clone https://github.com/JamalSZ/QEPUBUNTS.git
@@ -39,10 +46,10 @@ The code is organized as follows:
     ```
 
 2. Install the required Python packages:
+
     ```bash
     pip install -r requirements.txt
     ```
-
 
 ## Datasets
 
@@ -71,19 +78,21 @@ The synthetic Markov data used in some of the experiments is generated using the
 To generate Figure 2, follow these steps:
 
 1. Navigate to the `Challenges` directory:
+
     ```bash
     cd challenges
     ```
 
 2. Run the script:
-	```bash
-	   # N=number of states and n length 
-	   # python fig2.py first N n
-	   python fig2.py 1 50 10000
+
+ ```bash
+    # N=number of states and n length 
+    # python fig2.py first N n
+    python fig2.py 1 50 10000
     ```
 
     ```bash
-   	# After first run
+    # After first run
     python fig2.py 0
     ```
 
@@ -94,11 +103,13 @@ The output will be saved in the `Challenges/Results/` folder.
 To reproduce the results for Experiment 1, follow these steps:
 
 1. Navigate to the `Exp1` directory:
+
     ```bash
     cd Experiments/Exp1
     ```
 
 2. Run the following scripts in the order given:
+
     ```bash
     python pimax.py
     python ar1.py
@@ -106,6 +117,7 @@ To reproduce the results for Experiment 1, follow these steps:
     ```
 
 3. Finally, generate the plots by running:
+
     ```bash
     python plot_exp1.py
     ```
@@ -117,17 +129,20 @@ All outputs will be saved in the `Exp1/Results/` directory.
 To reproduce the results for Experiment 2, follow these steps:
 
 1. Navigate to the `Exp2` directory:
+
     ```bash
     cd Experiments/Exp2
     ```
 
 2. Run the following scripts:
+
     ```bash
     python exp2_fig4a.py
     python exp2_fig4b.py
     ```
 
 3. Finally, generate the combined plot by running:
+
     ```bash
     python plot_exp2_fig4a_4b.py
     ```
@@ -139,6 +154,7 @@ All outputs will be saved in the `Exp2/Results/` directory.
 To reproduce the results for Experiment 3, follow these steps:
 
 1. Navigate to the `Exp3` directory:
+
     ```bash
     cd Experiments/Exp3
     ```
@@ -146,6 +162,7 @@ To reproduce the results for Experiment 3, follow these steps:
 2. For each dataset (Temperature, ETTh1, and Stock), run the following commands:
 
     - For the Temperature dataset:
+
       ```bash
       # Run Pimax model with NLZ1 entropy estimator
       python temp.py Pimax NLZ1
@@ -163,6 +180,7 @@ To reproduce the results for Experiment 3, follow these steps:
       python temp.py cnnlstm
       
     - For the ETTh1 dataset:
+
       ```bash
       # Run Pimax model with NLZ1 entropy estimator
       python etth1.py Pimax NLZ1
@@ -181,6 +199,7 @@ To reproduce the results for Experiment 3, follow these steps:
       ```
 
     - For the Stock dataset:
+
       ```bash
       # Run Pimax model with NLZ1 entropy estimator
       python stock.py Pimax NLZ1
@@ -202,25 +221,27 @@ To reproduce the results for Experiment 3, follow these steps:
 3. After running the models, navigate to the respective results folders and generate the plots:
 
     - For the Temperature dataset:
+
       ```bash
       cd Temp_Results
       python plot_temp.py
       ```
 
     - For the ETTh1 dataset:
+
       ```bash
       cd ETTh1_Results
       python plot_temp.py
       ```
 
     - For the Stock dataset:
+
       ```bash
       cd Stock_Results
       python plot_temp.py
       ```
 
 All outputs will be saved in their respective results folders (`Temp_Results`, `ETTh1_Results`, `Stock_Results`).
-
 
 ## Utils: Entropy Estimators
 
@@ -233,7 +254,7 @@ The `Utils` folder contains scripts that implement entropy estimators and the pr
 - `Compute_PIMAX.py`: Computes the predictability upper bound based on entropy estimates.
 
 These scripts are utilized by the other experiment scripts as needed. You can also run these scripts independently to compute entropy estimates and predictability bounds for your own data.
+
 ## Results
 
 The results for all experiments and figures are saved in the `Results` directory.
-
