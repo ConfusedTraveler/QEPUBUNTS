@@ -224,48 +224,63 @@ def discretize(S,pred,eval_data,e):
     return S_discretized,pred_discretized,eval_discretized,N
 	
 if __name__ == "__main__":
-
+    # 从命令行获取参数，first用于控制是生成新数据还是读取已有数据
     first = int(sys.argv[1])
-
     
+    # 设置随机种子以确保结果可重现
     np.random.seed(seed)
 
-
+    # 设置输出文件路径和离散化参数范围
     output_path = "Results/24_50_fig2.csv"
-    eps = [1,2.5,5,7.5,10,12.5,15,17.5,20]
+    eps = [1,2.5,5,7.5,10,12.5,15,17.5,20]  # 不同的离散化bin宽度
+
     if first == 1:
+        # 生成新数据模式
+        # 从命令行获取状态数N和序列长度n
         N = int(sys.argv[2])
         n = int(sys.argv[3])
-        p = 1/(N*1.95)
-        transition_matrix = generate_transition_matrix(N,p)
+        p = 1/(N*1.95)  # 计算转移概率
         
+        # 生成马尔可夫链转移矩阵和时间序列
+        transition_matrix = generate_transition_matrix(N,p)
         initial_state = np.random.choice(N)
         series = generate_sequence(transition_matrix, initial_state, n)
-        tsize = int(0.8*len(series))
+        
+        # 使用生成的序列进行预测
+        tsize = int(0.8*len(series))  # 设置训练集大小
         predictions, eval_data = predict(series,N)
+        
+        # 存储不同bin宽度下的PImax和马尔可夫预测准确率
         pimax_l = []
         pimarkov = []
         
+        # 对每个bin宽度进行计算
         for e in eps:
             print("eps:",e)
+            # 对序列进行离散化处理
             S,pred,edata,NN = discretize(series,predictions,eval_data,e)
+            # 计算LZ复杂度和PImax
             H = Compute_LZ2(S,0)
             pimax = get_pimax(H,NN)		
+            # 计算预测准确率
             acc = get_acc(pred,edata)
             pimax_l.append(pimax)
             pimarkov.append(acc)
+            
+        # 保存结果到CSV文件
         csv_file = f'Results/{initial_state}_{N}_fig2.csv'
         data = list(zip(pimax_l, pimarkov))
-
         with open(csv_file, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['Pimax', 'Pimarkov'])
             writer.writerows(data)
     else:
+         # 读取已有数据模式
          series = pd.read_csv(output_path)
          pimax_l = series['Pimax'].values
          pimarkov = series['Pimarkov'].values
 
+    # 绘制结果图像
     plt.figure(figsize=(8, 5))	
     plt.plot(eps,pimax_l,marker= "o",label="Pimax")
     plt.plot(eps,pimarkov,marker="o",label="Pimarkov")
@@ -276,6 +291,7 @@ if __name__ == "__main__":
     plt.ylabel('Accuracy/Pimax',fontsize=20)
     plt.legend(fontsize=16,loc='lower right')
     plt.tight_layout()
+    # 保存并显示图像
     plt.savefig(f"./Results/fig2.png")
     plt.show()
-    plt.close()		
+    plt.close()
