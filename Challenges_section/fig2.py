@@ -59,7 +59,17 @@ def train_markov_model(train_data, N):
     
     """
     Train a Markov model and estimate the transition matrix.
+    
+    Inside the function, a count matrix is initialized as a two-dimensional NumPy array with a shape of (N, N). 
+    This matrix is intended to record the number of times the system transitions from one state to another. 
+    As the function iterates through the train_data sequence, it treats each consecutive pair of elements as a state transition. 
+    For every transition from a current state to its subsequent state, the corresponding entry in the count matrix is incremented.
 
+    Once all transitions have been counted, the function converts the count matrix into a transition probability matrix. 
+    This is done by dividing each count by the sum of counts in its corresponding row, 
+    which results in each row summing to one (assuming there is at least one transition from that state). 
+    The resulting matrix represents the probability of moving from one state to any other state in the model.
+    
     Parameters
     ----------
     train_data : array_like
