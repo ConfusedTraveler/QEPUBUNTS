@@ -42,6 +42,7 @@ def generate_transition_matrix(N,p):
         
         dominant_prob = 1 - (p*(N-1))  
         possible_next_states = [j for j in range(N) if j != i]
+         # 从可能的下一个状态中随机选择一个作为主要转移目标，这个状态将获得最大的转移概率 dominant_prob
         dominant_next_state = np.random.choice(possible_next_states)
         P[i, dominant_next_state] = dominant_prob
         equiprobable_prob = p #(1 - dominant_prob) / (N - 1)
@@ -159,6 +160,9 @@ def generate_sequence(transition_matrix, initial_state, sequence_length):
     current_state = initial_state
     sequence = [current_state]
     for _ in range(sequence_length - 1):
+        # 根据转移矩阵中的概率分布随机选择下一个状态：
+        # len(transition_matrix[current_state]) 提供可能的状态数量（0到N-1）
+        # p=transition_matrix[current_state] 指定了从当前状态转移到每个可能状态的概率
         next_state = np.random.choice(len(transition_matrix[current_state]), p=transition_matrix[current_state])
         sequence.append(next_state)
         current_state = next_state
@@ -239,7 +243,10 @@ if __name__ == "__main__":
         # 从命令行获取状态数N和序列长度n
         N = int(sys.argv[2])
         n = int(sys.argv[3])
+        # 1.95是超参，设置的大于1，则转移概率小于1/N
+        # dominant_prob = 1 - (p*(N-1))，向某个状态转移的概率最大，其他状态转移的概率相等，都是p
         p = 1/(N*1.95)  # 计算转移概率
+
         
         # 生成马尔可夫链转移矩阵和时间序列
         transition_matrix = generate_transition_matrix(N,p)
