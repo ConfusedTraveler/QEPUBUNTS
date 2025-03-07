@@ -5,6 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import warnings
 import sys
+# 这就是为什么进入challenge_section目录后，导入Utils下的模块就不报错了？
 sys.path.append('../')  # Add parent directory to the system path
 
 from Utils.LZ2 import *
@@ -51,7 +52,8 @@ def generate_transition_matrix(N,p):
             if j != dominant_next_state:
                 P[i, j] = equiprobable_prob
 
-    
+    # 测试用
+    # print(P)
     return P
 
 # Function to train a Markov model and estimate the transition matrix
@@ -145,7 +147,12 @@ def predict(time_series, N):
     n = len(time_series)
     train_size = int(0.8 * n)
     train_data, eval_data = time_series[:train_size], time_series[train_size:]
+    # transition_matrix打印出来看看，和generate_transition_matrix生成的转移矩阵是否一致
     transition_matrix = train_markov_model(train_data, N)
+
+    # 测试用
+    # print(transition_matrix)
+
     predictions = markov_model(eval_data, transition_matrix)			
     return predictions,eval_data
 
@@ -197,6 +204,8 @@ def get_acc(predictions,eval_data):
     """
     p = 0
     for i in range(len(predictions)):
+        # 确实是测试集第一个数据不比较，因为没有对应的预测值
+        # 测试集最后一个数据不预测，因为没有对应的下一个状态
         if predictions[i]==eval_data[i+1]:
             p+=1		
     acc = p/len(predictions)			
@@ -229,8 +238,12 @@ def discretize(S,pred,eval_data,e):
     N : int
         The number of unique states in the discretized sequence.
     """
+    
     N = int((max(S) - min(S) + 2 * e) / (2 * e))
     bins = np.linspace(min(S) - e, max(S) + e, N + 1)
+    
+    # 24 落在 (23, 25] 这个区间里，而该区间对应的标签为 12
+    # （因为标签从 0 开始编号）。所以，24 离散化后的标签是 12，而不是 23。
     S_discretized = pd.cut(S, bins=bins, labels=False)
     pred_discretized = pd.cut(pred, bins=bins, labels=False)
     eval_discretized = pd.cut(eval_data, bins=bins, labels=False)
