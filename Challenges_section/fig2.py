@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import warnings
 import sys
-# 这就是为什么进入challenge_section目录后，导入Utils下的模块就不报错了？
+# 如果不进入challenge_section目录，系统目录成了根目录的上一层目录（并不存在）
 sys.path.append('../')  # Add parent directory to the system path
 
 from Utils.LZ2 import *
@@ -298,6 +298,7 @@ if __name__ == "__main__":
             pimarkov.append(acc)
             
         # 保存结果到CSV文件
+        # 进入challenge_section目录后，就不用指明是在challenges_section目录下了
         csv_file = f'Results/{initial_state}_{N}_fig2.csv'
         data = list(zip(pimax_l, pimarkov))
         with open(csv_file, 'w', newline='') as file:
