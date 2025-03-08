@@ -4,6 +4,15 @@ import sys
 import os
 import csv
 
+# exp1 首先要按照一阶马尔科夫链的方式生成时间序列
+# 一阶马尔科夫链生成时间序列的方式如下：
+# 先构造状态转移矩阵（N*N），再从初始状态（0-N-1的一个整数）出发，根据当前状态的转移概率逐步选取下一个状态。
+# 状态转移矩阵的每一个元素都是一个概率值，表示从一个状态转移到另一个状态的概率。
+# 生成的时间序列是一个长度为n的序列，每个元素都是一个状态值（0-N-1的一个整数）。
+# 生成的时间序列和状态转移矩阵都保存在CSV文件中。
+# Pimax只跟三个参数有关，分别是entropy rate, 平均正确预测率和状态数。
+# 我们生成的时间序列有两个参数，分别是状态数和服从的分布。
+
 def generate_transition_matrix(N, a):
     """
     Generate an N x N transition matrix using a Zipf distribution.
@@ -23,6 +32,7 @@ def generate_transition_matrix(N, a):
     # Create a Zipf distribution object with parameter 'a'
     zipf_dist = zipf(a)
     # Generate an N x N array of random values based on the Zipf distribution
+    # debug看看就知道了
     values = zipf_dist.rvs(size=(N, N))
     # Normalize the generated values by dividing by the maximum value (scales the values to [0, 1])
     normalized_values = values / np.max(values)
@@ -62,11 +72,12 @@ def generate_markov_time_series(n, N, alpha):
 
 
 if __name__ == "__main__":
-    # Total number of states in the time series
+    # 时间序列的长度
     n = 50000
-    # List of different N values (number of states) for which data will be generated
+    # 状态数可能的取值
     N_values = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
     # Experiment identifiers; these may correspond to different experimental setups or conditions
+    # Exp2为什么不直接用Exp1呢？
     Exp = [1, 2]
 
     # Set seed value for reproducibility across experiments
@@ -79,6 +90,9 @@ if __name__ == "__main__":
     # Navigate to the parent directory; necessary for locating the Datasets folder
     parent_directory = os.path.dirname(current_directory)
     
+    # 实验1和实验2都是同样的数据生成方式，只是alpha值不同
+    # alpha值的设置是为了在不同的实验条件下，使得状态转移概率有所不同
+    # 怎么实现的呢？通过Zipf分布生成的转移概率矩阵，alpha值不同，生成的转移概率矩阵也不同
     # Iterate over each experiment
     for x in Exp:
         Experiment = "Exp" + str(x)
@@ -98,6 +112,8 @@ if __name__ == "__main__":
                 # Generate the time series and transition matrix for the current configuration
                 time_series, transition_matrix = generate_markov_time_series(n, N, alpha)
                 
+                # 为什么转移概率矩阵也要保存到CSV文件中呢？
+                # 为了在后续的实验中，可以直接读取这个转移概率矩阵，而不用再次生成
                 # Construct the file path for saving the time series data (CSV format)
                 ts_file = parent_directory + '/Datasets/Markov/' + Experiment + '/markov_ts_' + str(N) + '_' + str(n) + '_' + str(int(alpha)) + '.csv'
                 # Construct the file path for saving the transition matrix data (CSV format)

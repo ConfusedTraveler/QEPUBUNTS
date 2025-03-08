@@ -3,7 +3,7 @@ from scipy.stats import zipf
 import sys
 import csv
 
-
+# 非正式的测试代码
 def generate_zipf_transition_matrix(N, a):
     # Ensure a is greater than 1 for Zipf distribution
     if a <= 1:
@@ -22,8 +22,8 @@ def generate_zipf_transition_matrix(N, a):
     normalized_matrix = normalized_values / normalized_values.sum(axis=1, keepdims=True)
 
     return normalized_matrix
-    
-    
+
+# 多了一个参数dist，表示分布类型
 def generate_markov_time_series(n, N, alpha, dist):
     # Initialize the time series with a random integer between 0 and N-1
     time_series = [np.random.randint(N)]
@@ -35,10 +35,12 @@ def generate_markov_time_series(n, N, alpha, dist):
     else: 
         # Generate a random transition matrix
         transition_matrix = np.random.rand(N, N)
+		# debug看看就知道了
         transition_matrix /= transition_matrix.sum(axis=1)[:, np.newaxis]  # Normalize rows to make it a valid transition matrix
     
     # Generate the rest of the time series
     for _ in range(n - 1):
+		# 所以初始状态为什么不放在第一个位置？
         current_state = time_series[-1]
         next_state = np.random.choice(N, p=transition_matrix[current_state])
         time_series.append(next_state)
@@ -51,11 +53,14 @@ if __name__ == "__main__":
 	n = 50000
 	N_values = [2,3,4,5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 	
+	# 不一样
 	alpha_values = [1.02, 2, 15]
+	# 不一样
 	seed_values = [11, 41, 71, 307, 739]
 	
 	
 	dist = "zipf"
+	# uz有什么用？标识这些文件是由 Zipf 分布生成的数据
 	uz = "z"
 	for seed_value in seed_values:
 		for N in N_values:
@@ -65,6 +70,7 @@ if __name__ == "__main__":
 				# Set the seed for NumPy's random number generator
 				np.random.seed(seed_value)
 				
+				# dist = "zipf"在上面定义了
 				time_series, transition_matrix = generate_markov_time_series(n, N, alpha, dist)
 				
 				# Name of the CSV file
