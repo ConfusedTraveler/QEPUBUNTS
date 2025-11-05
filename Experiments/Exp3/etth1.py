@@ -16,9 +16,6 @@ def get_data(path, length):
     df = df.iloc[:length, :]
     return df.iloc[:, 0].values 
     
-
-
-
 def get_pimax(S, N):
     #func = lambda x: (-(x * np.log2(x) + (1 - x) * np.log2(1 - x)) + (1 - x) * (np.log2(N - 1) - np.log2(1 - x))) - S
     #func = lambda x: -2*x * np.log2(x) - 2*(1 - x) * np.log2(1 - x) + (x) * (np.log2(N - 2)) - S
@@ -26,7 +23,6 @@ def get_pimax(S, N):
     result = fsolve(func, 0.99999)
     return result[0]
 
-    
 if __name__ == "__main__":
 	# Set the common parameters for AR model
 	np.random.seed(0)
