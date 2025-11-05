@@ -26,7 +26,7 @@ def generate_zipf_transition_matrix(N, a):
     
 def generate_markov_time_series(n, N, alpha, dist):
     # Initialize the time series with a random integer between 0 and N-1
-    time_series = [np.random.randint(N)]
+    time_series = [np.random.randint(N)] # len(time_series): 1
     if dist == "zipf":
         #alpha = 3.0  # Shape parameter for the Zipf distribution
 
@@ -84,7 +84,7 @@ if __name__ == "__main__":
 					for number in time_series:
 						csv_writer.writerow([number])
 						
-					# Open the CSV file in write mode
+				# Open the CSV file in write mode
 				with open(tr_file, 'w', newline='') as csvfile:
 					# Create a CSV writer
 					csv_writer = csv.writer(csvfile)

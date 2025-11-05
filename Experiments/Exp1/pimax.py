@@ -19,10 +19,10 @@ def get_data(path, length):
 
 if __name__ == "__main__":
 
-    N_values = [50,45,40,35,30,25,20,15,10,5]
+    N_values = [50,45,40,35,30,25,15,10,5]
     length = 20000
     n=50000
-    a_values = [15,1]
+    a_values = [1]
     for a in a_values:
         PM = []
         for N in N_values:

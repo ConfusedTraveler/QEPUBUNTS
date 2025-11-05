@@ -17,8 +17,6 @@ def get_data(path, length):
     return df.iloc[:, 0].values 
     
 
-
-
 def get_pimax(S, N):
     #func = lambda x: (-(x * np.log2(x) + (1 - x) * np.log2(1 - x)) + (1 - x) * (np.log2(N - 1) - np.log2(1 - x))) - S
     #func = lambda x: -2*x * np.log2(x) - 2*(1 - x) * np.log2(1 - x) + (x) * (np.log2(N - 2)) - S
