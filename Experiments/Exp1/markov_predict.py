@@ -1,4 +1,3 @@
-
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import numpy as np
@@ -68,7 +67,7 @@ def get_data(path, length):
 if __name__ == "__main__":
 
     N_values = [5,10,15,20,25,30,35,40,45,50]
-    n = 10000
+    n = 50000
     a_values = [1,15]
     # Get the current directory of the script
     current_directory = os.getcwd()
@@ -81,7 +80,7 @@ if __name__ == "__main__":
     for a in a_values:
          for N in N_values:
             input_path = grandparent_directory + "/Datasets/Markov/Exp1/markov_ts_"+str(N)+"_"+str(50000)+"_"+str(a)+".csv"
-            output_path = "Results/markov_pred_"+str(N)+"_"+str(n)+"_"+str(a)+".csv"
+            output_path = "Results/Markov/markov_pred_"+str(N)+"_"+str(n)+"_"+str(a)+".csv"
             series = get_data(input_path, n)
             predict(series,N,output_path)
 	

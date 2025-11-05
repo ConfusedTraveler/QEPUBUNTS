@@ -38,7 +38,7 @@ def model_train_pred(data,output_path,N):
 if __name__ == "__main__":
 
     N_values = [5,10,15,20,25,30,35,40,45,50]
-    n = 25000
+    n = 50000
     a_values = [1,15]
 
     # Get the current directory of the script
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     for a in a_values:
          for N in N_values:
             input_path = grandparent_directory + "/Datasets/Markov/Exp1/markov_ts_"+str(N)+"_"+str(50000)+"_"+str(a)+".csv"
-            output_path = "Results/ar1_pred_"+str(N)+"_"+str(n)+"_"+str(a)+".csv"
+            output_path = "Results/AR1/ar1_pred_"+str(N)+"_"+str(n)+"_"+str(a)+".csv"
             series = get_data(input_path, n)
             model_train_pred(series,output_path,N)
             
