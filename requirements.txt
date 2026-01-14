@@ -4,3 +4,10 @@ pandas==1.5.3
 statsmodels==0.13.2
 pmdarima==2.0.1
 keras==2.10.0
+
+# numpy==2.2.6
+# scipy==1.17.0
+# pandas==2.3.3
+# statsmodels==0.14.6
+# pmdarima==2.0.4
+# keras==3.10.0
