@@ -51,8 +51,6 @@ def predict(model,test):
     return ypred
 
 def train_lstm_and_save_predictions(series,filename):
-	
-	
 	N = len(series)
 	n_steps = 10
 	n_features =1
@@ -70,9 +68,8 @@ def train_lstm_and_save_predictions(series,filename):
 	Xtest = Xtest.reshape((Xtest.shape[0], n_steps, n_features))
 	model = get_model(Neurons,params)
 	model.fit(Xtrain, ytrain, epochs=50, verbose=0)
-	Ttest = []
-
 	
+	Ttest = []
 	for j in range(len(ytest)):
 		x_input = Xtest[j].reshape(1,n_steps,n_features)
 		Ttest.append(x_input)
