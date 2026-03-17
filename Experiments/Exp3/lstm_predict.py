@@ -1,4 +1,5 @@
 import sys
+import os
 import numpy as np
 from Utils import *
 
@@ -76,6 +77,10 @@ def train_lstm_and_save_predictions(series,filename):
 		x_input = Xtest[j].reshape(1,n_steps,n_features)
 		Ttest.append(x_input)
 	predictions = predict(model,Ttest)     
+	file_exists = os.path.exists(filename)
+	file_empty = (not file_exists) or os.path.getsize(filename) == 0
 	with open(filename,"a") as file:
+		if file_empty:
+			file.write("Predicted,Actual\n")
 		for pred,y in zip(predictions, ytest):
 			file.write(f"{pred},{y}\n")
